@@ -1,4 +1,4 @@
 # hey-regex
 
 Cooking something 👩‍🍳🍳
-👨‍🍳...
+👨‍🍳

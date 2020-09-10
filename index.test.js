@@ -66,7 +66,30 @@ it("isDecimalNumber Should return type of boolean", () => {
   expect(typeof app.isDecimalNumber(123.3)).toEqual("boolean");
 });
 
-///////////////////////////////////////// ALPHA NUMERIC WITH SPACE
+///////////////////////////////////////// ALPHA NUMERIC
+it("isAlphaNumeric Should return true if data and option are valid (alphanumeric data)", () => {
+  expect(app.isAlphaNumeric("testing 01", "withSpace")).toEqual(true);
+});
+
+it("isAlphaNumeric Should return true if data and option are valid (alphanumericdata)", () => {
+  expect(app.isAlphaNumeric("testing01", "withoutSpace")).toEqual(true);
+});
+
+it("isAlphaNumeric Should return true if option is withSpace and if sample data is 'hello world'", () => {
+  expect(app.isAlphaNumeric("hello world", "withSpace")).toEqual(true);
+});
+
+it("isAlphaNumeric Should return true if option is withSpace and if sample data is 'helloworld'", () => {
+  expect(app.isAlphaNumeric("helloworld", "withSpace")).toEqual(true);
+});
+
+it("isAlphaNumeric Should return true if option is withoutSpace and if sample data is 'helloworld'", () => {
+  expect(app.isAlphaNumeric("helloworld", "withoutSpace")).toEqual(true);
+});
+
+it("isAlphaNumeric Should return false if option is withoutSpace and if sample data is 'hello world'", () => {
+  expect(app.isAlphaNumeric("hello world", "withoutSpace")).toEqual(false);
+});
 
 it("isAlphaNumeric Should return type of boolean", () => {
   expect(typeof app.isAlphaNumeric("asdf", "withSpace")).toEqual("boolean");
@@ -83,10 +106,8 @@ it("Should throw exception if data value is empty in isDecimalNumber()", () => {
   );
 });
 
-it("Should throw exception if data value is empty in isDecimalNumber()", () => {
-  expect(() => app.isDecimalNumber()).toThrow(
-    "isDecimalNumber() data is empty."
-  );
+it("Should throw exception if option is unknown for isDecimalNumber", () => {
+  expect(() => app.isDecimalNumber(2, "unknown")).toThrow("Unknown option.");
 });
 
 it("Should throw exception if data and/or option for isAlphaNumeric is empty", () => {
@@ -108,5 +129,7 @@ it("Should throw exception if option for isAlphaNumeric is empty", () => {
 });
 
 it("Should throw exception if option is unknown for isAlphaNumeric", () => {
-  expect(() => app.isAlphaNumeric("asdf", "unknow")).toThrow("Unknown option.");
+  expect(() => app.isAlphaNumeric("asdf", "unknown")).toThrow(
+    "Unknown option."
+  );
 });
