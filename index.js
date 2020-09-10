@@ -11,9 +11,14 @@ module.exports = {
     if (!data) {
       throw new Error("isDecimalNumber() data is empty.");
     }
-    if (option === "roundOff") {
-      data = data.toFixed(2);
+    if (option) {
+      if (option === "roundOff") {
+        data = data.toFixed(2);
+      } else {
+        throw new Error("Unknown option.");
+      }
     }
+
     return new RegExp(regEx.decimalNumber).test(data) ? true : false;
   },
   isAlphaNumeric(data, option) {
