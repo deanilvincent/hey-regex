@@ -1,0 +1,26 @@
+{
+  "name": "hey-regex",
+  "version": "1.0.0",
+  "description": "A NPM package that uses Javascript RegEx for common uses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deanilvincent/hey-regex.git"
+  },
+  "keywords": [
+    "regex",
+    "javascript-regex"
+  ],
+  "author": "deanilvincent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deanilvincent/hey-regex/issues"
+  },
+  "homepage": "https://github.com/deanilvincent/hey-regex#readme",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
