@@ -98,23 +98,30 @@ it("isAlphaNumeric Should return type of boolean", () => {
 ///////////////////////////////////////// EMAIL IDS
 it("isEmailId Should return true if data and option are valid email address (common)", () => {
   expect(app.isEmailId("none@none.com", "common")).toEqual(true);
-}); 
-
-it("isEmailId Should return true if data and option are valid email address (firstname.lastname@example.com)", () => {
-  expect(app.isEmailId("firstname.lastname@example.com", "common")).toEqual(true);
 });
 
+it("isEmailId Should return true if data and option are valid email address (firstname.lastname@example.com)", () => {
+  expect(app.isEmailId("firstname.lastname@example.com", "common")).toEqual(
+    true
+  );
+});
 
 it("isEmailId Should return true if data and option are valid email address (email@subdomain.example.com)", () => {
   expect(app.isEmailId("email@subdomain.example.com", "common")).toEqual(true);
 });
 
 it("isEmailId Should return true if data and option are valid email address (firstname+lastname@example.com)", () => {
-  expect(app.isEmailId("firstname+lastname@example.com", "uncommon")).toEqual(true);
+  expect(app.isEmailId("firstname+lastname@example.com", "uncommon")).toEqual(
+    true
+  );
 });
 
-it("isEmailId Should return true if data and option are valid email address (email@123.123.123.123)", () => {
-  expect(app.isEmailId("email@123.123.123.123", "uncommon")).toEqual(true);
+it("isEmailId Should return false if data and option are valid email address (email@123.123.123.123) common", () => {
+  expect(app.isEmailId("email@123.123.123.123", "common")).toEqual(false);
+});
+
+it("isEmailId Should return false if data and option are valid email address (email@123.123.123.123) uncommon", () => {
+  expect(app.isEmailId("email@123.123.123.123", "uncommon")).toEqual(false);
 });
 
 it("isEmailId Should return true if data and option are valid email address (uncommon)", () => {
