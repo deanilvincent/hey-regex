@@ -42,4 +42,20 @@ module.exports = {
     // if unknown option
     throw new Error("Unknown option.");
   },
+  isEmailId(data, option) {
+    if (!data && !option)
+      throw new Error("isEmailId() data and/or option is empty.");
+    if (!data) throw new Error("isEmailId() data is empty.");
+    if (!option)
+      throw new Error("Email id must have option: common or uncommon.");
+
+    if (option === "common") {
+      return new RegExp(regEx.commonEmailId).test(data) ? true : false;
+    }
+    if (option === "uncommon") {
+      return new RegExp(regEx.unCommonEmailId).test(data) ? true : false;
+    }
+    // if unknown option
+    throw new Error("Unknown option.");
+  },
 };

@@ -95,6 +95,36 @@ it("isAlphaNumeric Should return type of boolean", () => {
   expect(typeof app.isAlphaNumeric("asdf", "withSpace")).toEqual("boolean");
 });
 
+///////////////////////////////////////// EMAIL IDS
+it("isEmailId Should return true if data and option are valid email address (common)", () => {
+  expect(app.isEmailId("none@none.com", "common")).toEqual(true);
+}); 
+
+it("isEmailId Should return true if data and option are valid email address (firstname.lastname@example.com)", () => {
+  expect(app.isEmailId("firstname.lastname@example.com", "common")).toEqual(true);
+});
+
+
+it("isEmailId Should return true if data and option are valid email address (email@subdomain.example.com)", () => {
+  expect(app.isEmailId("email@subdomain.example.com", "common")).toEqual(true);
+});
+
+it("isEmailId Should return true if data and option are valid email address (firstname+lastname@example.com)", () => {
+  expect(app.isEmailId("firstname+lastname@example.com", "uncommon")).toEqual(true);
+});
+
+it("isEmailId Should return true if data and option are valid email address (email@123.123.123.123)", () => {
+  expect(app.isEmailId("email@123.123.123.123", "uncommon")).toEqual(true);
+});
+
+it("isEmailId Should return true if data and option are valid email address (uncommon)", () => {
+  expect(app.isEmailId("none@none.com", "uncommon")).toEqual(true);
+});
+
+it("isEmailId Should return type of boolean", () => {
+  expect(typeof app.isEmailId("none@none.com", "common")).toEqual("boolean");
+});
+
 ///////////////////////////////////////// EXCEPTIONS
 it("Should throw exception if data value is empty in isWholeNumber()", () => {
   expect(() => app.isWholeNumber()).toThrow("isWholeNumber() data is empty.");
@@ -132,4 +162,26 @@ it("Should throw exception if option is unknown for isAlphaNumeric", () => {
   expect(() => app.isAlphaNumeric("asdf", "unknown")).toThrow(
     "Unknown option."
   );
+});
+
+it("Should throw exception if data and/or option for isisEmailIdAlphaNumeric is empty", () => {
+  expect(() => app.isEmailId()).toThrow(
+    "isEmailId() data and/or option is empty."
+  );
+});
+
+it("Should throw exception if data for isEmailId is empty", () => {
+  expect(() => app.isEmailId("", "roundOff")).toThrow(
+    "isEmailId() data is empty."
+  );
+});
+
+it("Should throw exception if option for isEmailId is empty", () => {
+  expect(() => app.isEmailId("asdf", "")).toThrow(
+    "Email id must have option: common or uncommon."
+  );
+});
+
+it("Should throw exception if option is unknown for isEmailId", () => {
+  expect(() => app.isEmailId("asdf", "unknown")).toThrow("Unknown option.");
 });
