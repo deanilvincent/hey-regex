@@ -132,6 +132,57 @@ it("isEmailId Should return type of boolean", () => {
   expect(typeof app.isEmailId("none@none.com", "common")).toEqual("boolean");
 });
 
+///////////////////////////////////////// URL
+it("isUrl() should return true if data is https with 'withProtocol' option", () => {
+  expect(app.isUrl("https://bing.com", "withProtocol")).toEqual(true);
+});
+
+it("isUrl() should return true if data has extended domain signature with 'withProtocol' option", () => {
+  expect(app.isUrl("https://bing.com.pl", "withProtocol")).toEqual(true);
+});
+
+it("isUrl() should return true if data is http with 'withProtocol' option", () => {
+  expect(app.isUrl("http://bing.com", "withProtocol")).toEqual(true);
+});
+
+it("isUrl() should return false if data has no protocol but with 'withProtocol' option", () => {
+  expect(app.isUrl("bing.com", "withProtocol")).toEqual(false);
+});
+
+it("isUrl() should return true if data has protocol with 'optionalProtocol' option", () => {
+  expect(app.isUrl("https://bing.com", "optionalProtocol")).toEqual(true);
+});
+
+it("isUrl() should return true if data with 'optionalProtocol' option", () => {
+  expect(app.isUrl("bing.com", "optionalProtocol")).toEqual(true);
+});
+
+it("isUrl() should return true if data is a subdomain 'optionalProtocol'", () => {
+  expect(app.isUrl("api.bing.com", "optionalProtocol")).toEqual(true);
+});
+
+it("isUrl() should return true if data is a multiple subdomain", () => {
+  expect(app.isUrl("https://api.api.api.bing.com", "withProtocol")).toEqual(
+    true
+  );
+});
+
+it("isUrl() should return false if data has no domain at the end with 'withProtocol", () => {
+  expect(app.isUrl("https://bing", "withProtocol")).toEqual(false);
+});
+
+it("isUrl() should return false if data has no domain at the end with 'optionalProtocol", () => {
+  expect(app.isUrl("https://bing", "optionalProtocol")).toEqual(false);
+});
+
+it("isUrl() should return false if data has symbols with 'optionalProtocol", () => {
+  expect(app.isUrl("https://bing@34sas*03", "optionalProtocol")).toEqual(false);
+});
+
+it("isUrl() should return false if data has symbols with 'withProtocol", () => {
+  expect(app.isUrl("https://bing@34sas*03", "withProtocol")).toEqual(false);
+});
+
 ///////////////////////////////////////// EXCEPTIONS
 it("Should throw exception if data value is empty in isWholeNumber()", () => {
   expect(() => app.isWholeNumber()).toThrow("isWholeNumber() data is empty.");
@@ -191,4 +242,22 @@ it("Should throw exception if option for isEmailId is empty", () => {
 
 it("Should throw exception if option is unknown for isEmailId", () => {
   expect(() => app.isEmailId("asdf", "unknown")).toThrow("Unknown option.");
+});
+
+it("Should throw exception if data and/or option for isUrl is empty", () => {
+  expect(() => app.isUrl()).toThrow("isUrl() data and/or option is empty.");
+});
+
+it("Should throw exception if data for isUrl is empty", () => {
+  expect(() => app.isUrl("", "withProtocol")).toThrow("isUrl() data is empty.");
+});
+
+it("Should throw exception if option for isUrl is empty", () => {
+  expect(() => app.isUrl("asdf", "")).toThrow(
+    "URL must have option: withProtocol or optionalProtocol."
+  );
+});
+
+it("Should throw exception if option is unknown for isUrl", () => {
+  expect(() => app.isUrl("asdf", "unknown")).toThrow("Unknown option.");
 });

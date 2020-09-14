@@ -58,4 +58,24 @@ module.exports = {
     // if unknown option
     throw new Error("Unknown option.");
   },
+  isUrl(data, option) {
+    if (!data && !option)
+      throw new Error("isUrl() data and/or option is empty.");
+    if (!data) throw new Error("isUrl() data is empty.");
+    if (!option)
+      throw new Error(
+        "URL must have option: withProtocol or optionalProtocol."
+      );
+
+    if (option === "withProtocol") {
+      return new RegExp(regEx.urlWithProtocol).test(data) ? true : false;
+    }
+    if (option === "optionalProtocol") {
+      return new RegExp(regEx.urlWithOptionalProtocol).test(data)
+        ? true
+        : false;
+    }
+    // if unknown option
+    throw new Error("Unknown option.");
+  },
 };
