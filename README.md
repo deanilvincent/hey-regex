@@ -43,6 +43,8 @@ console.log(heyRegex.isUrl("bing.com", "optionalProtocol")) // returns true
 | `isEmailId()` | `common` & `uncommon` |
 | `isUrl()` | `withProtocol` & `optionalProtocol`  |
 
+(Will add more regEx checker in the future if necessary.)
+
 ### RegEx Used
 
 Visit the [regEx-utils.js](./regEx-utils.js) file.
